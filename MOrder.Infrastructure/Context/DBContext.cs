@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MOrder.Core.Models;
+using MOrder.Core.Models2;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -58,6 +58,8 @@ namespace MOrder.Infrastructure.Context
         public virtual DbSet<KursnaLista> KursnaLista { get; set; }
         public virtual DbSet<MigrationHistory> MigrationHistory { get; set; }
         public virtual DbSet<Mjesta> Mjesta { get; set; }
+        public virtual DbSet<MobileOrderItems> MobileOrderItems { get; set; }
+        public virtual DbSet<MobileOrders> MobileOrders { get; set; }
         public virtual DbSet<NaljepnicaUroli> NaljepnicaUroli { get; set; }
         public virtual DbSet<NaloziBlagajne> NaloziBlagajne { get; set; }
         public virtual DbSet<NaloziDobavljaca> NaloziDobavljaca { get; set; }
@@ -142,8 +144,7 @@ namespace MOrder.Infrastructure.Context
         public virtual DbSet<ZavisniTroskovi> ZavisniTroskovi { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-        }
+        { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -2623,6 +2624,73 @@ namespace MOrder.Infrastructure.Context
                 entity.Property(e => e.Naziv)
                     .IsRequired()
                     .HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<MobileOrderItems>(entity =>
+            {
+                entity.HasKey(e => new { e.MobileOrderId, e.Id })
+                    .HasName("PK_dbo.MobileOrderItems");
+
+                entity.HasIndex(e => e.MobileOrderId)
+                    .HasName("IX_MobileOrderId");
+
+                entity.HasIndex(e => e.SifraArtikla)
+                    .HasName("IX_SifraArtikla");
+
+                entity.Property(e => e.AddedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Cijena).HasColumnType("decimal(18, 2)");
+
+                entity.Property(e => e.Kolicina).HasColumnType("decimal(18, 2)");
+
+                entity.Property(e => e.ModifiedBy).HasMaxLength(50);
+
+                entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.SifraArtikla)
+                    .IsRequired()
+                    .HasMaxLength(6)
+                    .IsFixedLength();
+
+                entity.Property(e => e.SifraGrupeArtikala)
+                    .IsRequired()
+                    .HasMaxLength(3);
+
+                entity.HasOne(d => d.MobileOrder)
+                    .WithMany(p => p.MobileOrderItems)
+                    .HasForeignKey(d => d.MobileOrderId)
+                    .HasConstraintName("FK_dbo.MobileOrderItems_dbo.MobileOrders_MobileOrderId");
+
+                entity.HasOne(d => d.SifraArtiklaNavigation)
+                    .WithMany(p => p.MobileOrderItems)
+                    .HasForeignKey(d => d.SifraArtikla)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_dbo.MobileOrderItems_dbo.Artikli_SifraArtikla");
+            });
+
+            modelBuilder.Entity<MobileOrders>(entity =>
+            {
+                entity.HasIndex(e => e.UserNameProdavaca)
+                    .HasName("IX_UserNameProdavaca");
+
+                entity.Property(e => e.AddedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.DatumIvrijeme)
+                    .HasColumnName("DatumIVrijeme")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.DodatniOpis).HasMaxLength(500);
+
+                entity.Property(e => e.ModifiedBy).HasMaxLength(50);
+
+                entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.UserNameProdavaca).HasMaxLength(20);
+
+                entity.HasOne(d => d.UserNameProdavacaNavigation)
+                    .WithMany(p => p.MobileOrders)
+                    .HasForeignKey(d => d.UserNameProdavaca)
+                    .HasConstraintName("FK_dbo.MobileOrders_dbo.Prodavaci_UserNameProdavaca");
             });
 
             modelBuilder.Entity<NaljepnicaUroli>(entity =>
@@ -7647,8 +7715,6 @@ namespace MOrder.Infrastructure.Context
                     .HasForeignKey(d => d.KontoObaveze)
                     .HasConstraintName("FK_dbo.ZavisniTroskovi_dbo.AnalitickaKonta_KontoObaveze");
             });
-
         }
-
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MOrder.Core.Models;
+using MOrder.Core.Models2;
 using MOrder.Infrastructure.Context;
 using MOrder.Infrastructure.DTOs.Output;
 using MOrder.Infrastructure.Interfaces;

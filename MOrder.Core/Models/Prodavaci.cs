@@ -5,13 +5,14 @@ using System.Collections.Generic;
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 
-namespace MOrder.Core.Models
+namespace MOrder.Core.Models2
 {
     public partial class Prodavaci
     {
         public Prodavaci()
         {
             DokumentiPrometaMp = new HashSet<DokumentiPrometaMp>();
+            MobileOrders = new HashSet<MobileOrders>();
         }
 
         public string UserName { get; set; }
@@ -32,5 +33,6 @@ namespace MOrder.Core.Models
         public bool UvidUnezatvoreneRacuneOstalihProdavaca { get; set; }
 
         public virtual ICollection<DokumentiPrometaMp> DokumentiPrometaMp { get; set; }
+        public virtual ICollection<MobileOrders> MobileOrders { get; set; }
     }
 }

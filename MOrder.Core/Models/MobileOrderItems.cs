@@ -7,20 +7,19 @@ using System.Collections.Generic;
 
 namespace MOrder.Core.Models2
 {
-    public partial class StavkaObrascaSl2
+    public partial class MobileOrderItems
     {
+        public int MobileOrderId { get; set; }
         public int Id { get; set; }
-        public string SifraOj { get; set; }
-        public string RedniBroj { get; set; }
-        public DateTime DatumRacuna { get; set; }
-        public string BrojRacuna { get; set; }
-        public decimal IznosBezPdv { get; set; }
-        public decimal IznosPdv { get; set; }
+        public string SifraArtikla { get; set; }
+        public decimal Kolicina { get; set; }
+        public decimal Cijena { get; set; }
+        public string SifraGrupeArtikala { get; set; }
         public DateTime ModifiedDate { get; set; }
         public DateTime AddedDate { get; set; }
         public string ModifiedBy { get; set; }
-        public Guid Guid { get; set; }
 
-        public virtual ObrazacSl2 ObrazacSl2 { get; set; }
+        public virtual MobileOrders MobileOrder { get; set; }
+        public virtual Artikli SifraArtiklaNavigation { get; set; }
     }
 }

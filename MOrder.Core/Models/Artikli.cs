@@ -5,7 +5,7 @@ using System.Collections.Generic;
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 
-namespace MOrder.Core.Models
+namespace MOrder.Core.Models2
 {
     public partial class Artikli
     {
@@ -14,6 +14,7 @@ namespace MOrder.Core.Models
             ArtikliKalkulacijeMp = new HashSet<ArtikliKalkulacijeMp>();
             GotoviProizvodiRadnogNalogaProizvodnje = new HashSet<GotoviProizvodiRadnogNalogaProizvodnje>();
             KalkulacijeZavisniTroskovi = new HashSet<KalkulacijeZavisniTroskovi>();
+            MobileOrderItems = new HashSet<MobileOrderItems>();
             PomocnePopisneListe = new HashSet<PomocnePopisneListe>();
             PomocnePopisneListeVp = new HashSet<PomocnePopisneListeVp>();
             PresjeciStanjaMp = new HashSet<PresjeciStanjaMp>();
@@ -78,6 +79,7 @@ namespace MOrder.Core.Models
         public virtual ICollection<ArtikliKalkulacijeMp> ArtikliKalkulacijeMp { get; set; }
         public virtual ICollection<GotoviProizvodiRadnogNalogaProizvodnje> GotoviProizvodiRadnogNalogaProizvodnje { get; set; }
         public virtual ICollection<KalkulacijeZavisniTroskovi> KalkulacijeZavisniTroskovi { get; set; }
+        public virtual ICollection<MobileOrderItems> MobileOrderItems { get; set; }
         public virtual ICollection<PomocnePopisneListe> PomocnePopisneListe { get; set; }
         public virtual ICollection<PomocnePopisneListeVp> PomocnePopisneListeVp { get; set; }
         public virtual ICollection<PresjeciStanjaMp> PresjeciStanjaMp { get; set; }
