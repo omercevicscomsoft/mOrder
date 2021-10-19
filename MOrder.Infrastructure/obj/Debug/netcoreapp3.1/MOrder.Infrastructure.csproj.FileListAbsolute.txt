@@ -11,3 +11,16 @@ C:\Users\pc\source\repos\MOrder.Api\MOrder.Infrastructure\obj\Debug\netcoreapp3.
 C:\Users\pc\source\repos\MOrder.Api\MOrder.Infrastructure\obj\Debug\netcoreapp3.1\MOrder.Infrastructure.csproj.CopyComplete
 C:\Users\pc\source\repos\MOrder.Api\MOrder.Infrastructure\obj\Debug\netcoreapp3.1\MOrder.Infrastructure.dll
 C:\Users\pc\source\repos\MOrder.Api\MOrder.Infrastructure\obj\Debug\netcoreapp3.1\MOrder.Infrastructure.pdb
+C:\Users\pc\Documents\Projects\Development\MOrder.Api\MOrder.Infrastructure\bin\Debug\netcoreapp3.1\MOrder.Infrastructure.deps.json
+C:\Users\pc\Documents\Projects\Development\MOrder.Api\MOrder.Infrastructure\bin\Debug\netcoreapp3.1\MOrder.Infrastructure.dll
+C:\Users\pc\Documents\Projects\Development\MOrder.Api\MOrder.Infrastructure\bin\Debug\netcoreapp3.1\MOrder.Infrastructure.pdb
+C:\Users\pc\Documents\Projects\Development\MOrder.Api\MOrder.Infrastructure\bin\Debug\netcoreapp3.1\MOrder.Core.dll
+C:\Users\pc\Documents\Projects\Development\MOrder.Api\MOrder.Infrastructure\bin\Debug\netcoreapp3.1\MOrder.Core.pdb
+C:\Users\pc\Documents\Projects\Development\MOrder.Api\MOrder.Infrastructure\obj\Debug\netcoreapp3.1\MOrder.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\pc\Documents\Projects\Development\MOrder.Api\MOrder.Infrastructure\obj\Debug\netcoreapp3.1\MOrder.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pc\Documents\Projects\Development\MOrder.Api\MOrder.Infrastructure\obj\Debug\netcoreapp3.1\MOrder.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\pc\Documents\Projects\Development\MOrder.Api\MOrder.Infrastructure\obj\Debug\netcoreapp3.1\MOrder.Infrastructure.AssemblyInfo.cs
+C:\Users\pc\Documents\Projects\Development\MOrder.Api\MOrder.Infrastructure\obj\Debug\netcoreapp3.1\MOrder.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\pc\Documents\Projects\Development\MOrder.Api\MOrder.Infrastructure\obj\Debug\netcoreapp3.1\MOrder.Infrastructure.csproj.CopyComplete
+C:\Users\pc\Documents\Projects\Development\MOrder.Api\MOrder.Infrastructure\obj\Debug\netcoreapp3.1\MOrder.Infrastructure.dll
+C:\Users\pc\Documents\Projects\Development\MOrder.Api\MOrder.Infrastructure\obj\Debug\netcoreapp3.1\MOrder.Infrastructure.pdb

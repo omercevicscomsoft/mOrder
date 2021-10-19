@@ -7,6 +7,9 @@ namespace MOrder.Infrastructure.Interfaces
 {
     public interface IRepositoryManager
     {
+        IArtiklRepository ArtiklRepository { get; }
+        IGrupeArtikalaRepository GrupeArtikalaRepository { get; }
+        IPodGrupeArtikalaRepository PodGrupeArtikalaRepository { get; }
         Task SaveAsync();
     }
 }

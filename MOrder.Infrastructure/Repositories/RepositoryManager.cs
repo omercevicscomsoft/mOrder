@@ -10,10 +10,49 @@ namespace MOrder.Infrastructure.Repositories
     public class RepositoryManager : IRepositoryManager
     {
         private readonly DBContext _context;
+        private IArtiklRepository _artiklRepository;
+        private IGrupeArtikalaRepository _grupeArtikalaRepository;
+        private IPodGrupeArtikalaRepository _podGrupeArtikalaRepository;
 
         public RepositoryManager(DBContext context)
         {
             this._context = context;
+        }
+
+        public IArtiklRepository ArtiklRepository
+        {
+            get
+            {
+                if (_artiklRepository == null)
+                {
+                    _artiklRepository = new ArtiklRepository(_context);
+                }
+                return _artiklRepository;
+            }
+        }
+
+        public IGrupeArtikalaRepository GrupeArtikalaRepository
+        {
+            get
+            {
+                if (_grupeArtikalaRepository == null)
+                {
+                    _grupeArtikalaRepository = new GrupaArtikalaRepository(_context);
+                }
+                return _grupeArtikalaRepository;
+            }
+        }
+
+        public IPodGrupeArtikalaRepository PodGrupeArtikalaRepository
+        {
+            get
+            {
+                if (_podGrupeArtikalaRepository == null)
+                {
+                    _podGrupeArtikalaRepository = new PodGrupaArtikalaRepository(_context);
+                }
+                return _podGrupeArtikalaRepository;
+            }
         }
 
         public async Task SaveAsync()
