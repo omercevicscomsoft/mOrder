@@ -9,8 +9,8 @@ namespace MOrder.Core.Models2
 {
     public partial class MobileOrderItems
     {
-        public int MobileOrderId { get; set; }
         public int Id { get; set; }
+        public int MobileOrderId { get; set; }
         public string SifraArtikla { get; set; }
         public decimal Kolicina { get; set; }
         public decimal Cijena { get; set; }

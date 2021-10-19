@@ -144,7 +144,8 @@ namespace MOrder.Infrastructure.Context
         public virtual DbSet<ZavisniTroskovi> ZavisniTroskovi { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        { }
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -2628,9 +2629,6 @@ namespace MOrder.Infrastructure.Context
 
             modelBuilder.Entity<MobileOrderItems>(entity =>
             {
-                entity.HasKey(e => new { e.MobileOrderId, e.Id })
-                    .HasName("PK_dbo.MobileOrderItems");
-
                 entity.HasIndex(e => e.MobileOrderId)
                     .HasName("IX_MobileOrderId");
 
@@ -7716,5 +7714,6 @@ namespace MOrder.Infrastructure.Context
                     .HasConstraintName("FK_dbo.ZavisniTroskovi_dbo.AnalitickaKonta_KontoObaveze");
             });
         }
+
     }
 }

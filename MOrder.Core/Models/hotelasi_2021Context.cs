@@ -149,7 +149,9 @@ namespace MOrder.Core.Models2
         public virtual DbSet<Usluge> Usluge { get; set; }
         public virtual DbSet<ZavisniTroskovi> ZavisniTroskovi { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -2633,9 +2635,6 @@ namespace MOrder.Core.Models2
 
             modelBuilder.Entity<MobileOrderItems>(entity =>
             {
-                entity.HasKey(e => new { e.MobileOrderId, e.Id })
-                    .HasName("PK_dbo.MobileOrderItems");
-
                 entity.HasIndex(e => e.MobileOrderId)
                     .HasName("IX_MobileOrderId");
 
