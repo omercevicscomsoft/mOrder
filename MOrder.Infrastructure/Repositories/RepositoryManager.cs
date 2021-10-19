@@ -13,6 +13,8 @@ namespace MOrder.Infrastructure.Repositories
         private IArtiklRepository _artiklRepository;
         private IGrupeArtikalaRepository _grupeArtikalaRepository;
         private IPodGrupeArtikalaRepository _podGrupeArtikalaRepository;
+        private IMobileOrderRepository _mobileOrderRepository;
+        private IMobileOrderItemRepository _mobileOrderItemRepository;
 
         public RepositoryManager(DBContext context)
         {
@@ -52,6 +54,30 @@ namespace MOrder.Infrastructure.Repositories
                     _podGrupeArtikalaRepository = new PodGrupaArtikalaRepository(_context);
                 }
                 return _podGrupeArtikalaRepository;
+            }
+        }
+
+        public IMobileOrderRepository MobileOrderRepository
+        {
+            get
+            {
+                if (_mobileOrderRepository == null)
+                {
+                    _mobileOrderRepository = new MobileOrderRepository(_context);
+                }
+                return _mobileOrderRepository;
+            }
+        }
+
+        public IMobileOrderItemRepository MobileOrderItemRepository
+        {
+            get
+            {
+                if (_mobileOrderItemRepository == null)
+                {
+                    _mobileOrderItemRepository = new MobileOrderItemRepository(_context);
+                }
+                return _mobileOrderItemRepository;
             }
         }
 

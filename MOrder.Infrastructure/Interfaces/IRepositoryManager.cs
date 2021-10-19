@@ -10,6 +10,8 @@ namespace MOrder.Infrastructure.Interfaces
         IArtiklRepository ArtiklRepository { get; }
         IGrupeArtikalaRepository GrupeArtikalaRepository { get; }
         IPodGrupeArtikalaRepository PodGrupeArtikalaRepository { get; }
+        IMobileOrderRepository MobileOrderRepository { get; }
+        IMobileOrderItemRepository MobileOrderItemRepository { get; }
         Task SaveAsync();
     }
 }
