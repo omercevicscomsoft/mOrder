@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using MOrder.Infrastructure.Extensions;
+using MOrder.Infrastructure.Hubs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,8 @@ namespace MOrder.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddSignalR(o => o.EnableDetailedErrors = true)
+                .AddJsonProtocol(o => o.PayloadSerializerOptions.IgnoreNullValues = true);
             services.ConfigureDBContext(this.Configuration);
             services.ConfigureCors(this.Configuration);
             services.ConfigureSwager();
@@ -61,6 +64,7 @@ namespace MOrder.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/order");
             });
         }
     }
