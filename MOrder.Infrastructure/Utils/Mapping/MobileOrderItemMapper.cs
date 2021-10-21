@@ -1,5 +1,6 @@
 ﻿using MOrder.Core.Models2;
 using MOrder.Infrastructure.DTOs.Input;
+using MOrder.Infrastructure.DTOs.Output;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,6 +22,20 @@ namespace MOrder.Infrastructure.Utils.Mapping
                 AddedDate = DateTime.Now,
                 ModifiedBy = "",
                 ModifiedDate = DateTime.Now
+            };
+        }
+
+        public static OutMobileOrderItem Map(MobileOrderItems mobOrderItem)
+        {
+            return new OutMobileOrderItem
+            {
+                Id = mobOrderItem.Id,
+                Cijena = mobOrderItem.Cijena,
+                Kolicina = mobOrderItem.Kolicina,
+                MobileOrderId = mobOrderItem.MobileOrderId,
+                SifraArtikla = mobOrderItem.SifraArtikla,
+                SifraGrupeArtikala = mobOrderItem.SifraGrupeArtikala,
+                SifraArtiklaNavigation = ArtiklMapper.Map(mobOrderItem.SifraArtiklaNavigation)
             };
         }
     }

@@ -1,9 +1,12 @@
-﻿using MOrder.Core.Models2;
+﻿using Microsoft.EntityFrameworkCore;
+using MOrder.Core.Models2;
 using MOrder.Infrastructure.Context;
 using MOrder.Infrastructure.Interfaces;
+using MOrder.Infrastructure.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MOrder.Infrastructure.Repositories
 {
@@ -13,9 +16,25 @@ namespace MOrder.Infrastructure.Repositories
         {
 
         }
+
+        public new MobileOrders Update(MobileOrders mobileOrder)
+        {
+            return base.Update(mobileOrder);
+        }
+
         public new MobileOrders Create(MobileOrders mobileOrder)
         {
             return base.Create(mobileOrder);
+        }
+
+        public async Task<IEnumerable<MobileOrders>> GetAsync(bool trackChanges = false)
+        {
+            return await base.Entity(trackChanges).Include(x=>x.MobileOrderItems).ThenInclude(y=>y.SifraArtiklaNavigation).ToListAsync();
+        }
+
+        public async Task<MobileOrders> GetAsync(int id, bool trackChanges = false)
+        {
+            return await base.Entity(trackChanges).Include(x => x.MobileOrderItems).ThenInclude(y => y.SifraArtiklaNavigation).FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }

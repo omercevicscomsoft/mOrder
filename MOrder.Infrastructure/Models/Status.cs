@@ -8,7 +8,6 @@ namespace MOrder.Infrastructure.Models
     {
         Naruceno = 0,
         Obrada = 1,
-        Preuzimanje = 2,
-        Zavrseno = 3
+        Zavrseno =2
     }
 }

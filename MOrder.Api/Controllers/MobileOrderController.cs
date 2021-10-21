@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using MOrder.Infrastructure.DTOs.Input;
+using MOrder.Infrastructure.Extensions;
 using MOrder.Infrastructure.Hubs;
 using MOrder.Infrastructure.Interfaces;
+using MOrder.Infrastructure.Models;
 using MOrder.Infrastructure.Utils.Mapping;
 using System;
 using System.Collections.Generic;
@@ -29,14 +31,55 @@ namespace MOrder.Api.Controllers
         public async Task<IActionResult> CreateAsync([FromBody] InMobileOrderDTO mobileOrderDTO)
         {
             var mobileOrder = MobileOrderMapper.Map(mobileOrderDTO);
+           
+            mobileOrder = _repositoryManager.MobileOrderRepository.Create(mobileOrder);
+            
+            await _repositoryManager.SaveAsync();
+            foreach (var item in mobileOrderDTO.OrderItems)
+            {
+                item.MobileOrderId = mobileOrder.Id;
+                var orderItem = MobileOrderItemMapper.Map(item);
+                mobileOrder.MobileOrderItems.Add(_repositoryManager.MobileOrderItemRepository.Create(orderItem));
+            }
+            await _repositoryManager.SaveAsync();
+            mobileOrder = await _repositoryManager.MobileOrderRepository.GetAsync(mobileOrder.Id);
 
-            mobileOrder=_repositoryManager.MobileOrderRepository.Create(mobileOrder);
+            await _hubContext.Clients.All.Update(MobileOrderMapper.Map(mobileOrder));
 
+            return Ok(mobileOrder);
+        }
+
+        [HttpGet()]
+        public async Task<IActionResult> GetAsync()
+        {
+            var mobileOrders = await _repositoryManager.MobileOrderRepository.GetAsync();
+
+            return Ok(mobileOrders);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetAsync(int id)
+        {
+            var mobileOrder = await _repositoryManager.MobileOrderRepository.GetAsync(id);
+
+            return Ok(mobileOrder);
+        }
+
+        [HttpPut("{id}/status/{orderStatus}")]
+        public async Task<IActionResult> UpdateAsync([FromRoute] int id, [FromRoute] int orderStatus)
+        {
+            var mobileOrder = await _repositoryManager.MobileOrderRepository.GetAsync(id);
+
+            if (mobileOrder == null)
+            {
+                return Ok(mobileOrder);
+            }
+            mobileOrder.Update(orderStatus);
+
+            mobileOrder = _repositoryManager.MobileOrderRepository.Update(mobileOrder);
 
             await _repositoryManager.SaveAsync();
-
-            await this._hubContext.Clients.All.Update(mobileOrder);
-
+            await _hubContext.Clients.All.Update(MobileOrderMapper.Map(mobileOrder));
             return Ok(mobileOrder);
         }
     }

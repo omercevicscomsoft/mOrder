@@ -11,6 +11,8 @@ namespace MOrder.Infrastructure.DTOs.Input
         public int StolId { get; set; }
         [Required]
         public string UserNameProdavaca { get; set; }
+        [Required]
+        public List<InMobileOrderItemDTO> OrderItems { get; set; }
         public string DodatniOpis { get; set; }
 
     }

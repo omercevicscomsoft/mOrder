@@ -29,7 +29,7 @@ namespace MOrder.Api
         {
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddSignalR(o => o.EnableDetailedErrors = true)
-                .AddJsonProtocol(o => o.PayloadSerializerOptions.IgnoreNullValues = true);
+                 .AddJsonProtocol(o => o.PayloadSerializerOptions.IgnoreNullValues = true);
             services.ConfigureDBContext(this.Configuration);
             services.ConfigureCors(this.Configuration);
             services.ConfigureSwager();
