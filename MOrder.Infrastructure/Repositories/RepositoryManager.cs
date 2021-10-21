@@ -15,6 +15,7 @@ namespace MOrder.Infrastructure.Repositories
         private IPodGrupeArtikalaRepository _podGrupeArtikalaRepository;
         private IMobileOrderRepository _mobileOrderRepository;
         private IMobileOrderItemRepository _mobileOrderItemRepository;
+        private IProdavacRepository _prodavacRepository;
 
         public RepositoryManager(DBContext context)
         {
@@ -78,6 +79,18 @@ namespace MOrder.Infrastructure.Repositories
                     _mobileOrderItemRepository = new MobileOrderItemRepository(_context);
                 }
                 return _mobileOrderItemRepository;
+            }
+        }
+
+        public IProdavacRepository ProdavacRepository
+        {
+            get
+            {
+                if (_prodavacRepository == null)
+                {
+                    _prodavacRepository = new ProdavacRepository(_context);
+                }
+                return _prodavacRepository;
             }
         }
 
