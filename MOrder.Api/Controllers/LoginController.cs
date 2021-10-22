@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MOrder.Infrastructure.DTOs.Input;
 using MOrder.Infrastructure.Interfaces;
+using MOrder.Infrastructure.Utils.Mapping;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace MOrder.Api.Controllers
                 return NotFound();
             }
 
-            return Ok(prodavac);
+            return Ok(UserMapper.Map(prodavac));
         }
     }
 }

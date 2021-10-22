@@ -5,6 +5,7 @@ using MOrder.Infrastructure.Interfaces;
 using MOrder.Infrastructure.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,6 +36,11 @@ namespace MOrder.Infrastructure.Repositories
         public async Task<MobileOrders> GetAsync(int id, bool trackChanges = false)
         {
             return await base.Entity(trackChanges).Include(x => x.MobileOrderItems).ThenInclude(y => y.SifraArtiklaNavigation).FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<IEnumerable<MobileOrders>> GetAsync(string userNameProdavaca, bool trackChanges = false)
+        {
+            return await base.Entity(trackChanges).Include(x => x.MobileOrderItems).ThenInclude(y => y.SifraArtiklaNavigation).Where(x => x.UserNameProdavaca == userNameProdavaca).ToListAsync();
         }
     }
 }

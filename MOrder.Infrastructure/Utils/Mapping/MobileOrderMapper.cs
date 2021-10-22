@@ -14,7 +14,7 @@ namespace MOrder.Infrastructure.Utils.Mapping
         {
             return new MobileOrders
             {
-                Id = 0,
+                Id = mobOrder.Id,
                 DodatniOpis = mobOrder.DodatniOpis,
                 UserNameProdavaca = mobOrder.UserNameProdavaca,
                 StolId = mobOrder.StolId,

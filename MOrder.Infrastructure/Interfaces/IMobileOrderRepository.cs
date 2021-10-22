@@ -12,6 +12,7 @@ namespace MOrder.Infrastructure.Interfaces
         MobileOrders Create(MobileOrders mobileOrder);
         Task<MobileOrders> GetAsync(int id, bool trackChanges = false);
         Task<IEnumerable<MobileOrders>> GetAsync(bool trackChanges = false);
+        Task<IEnumerable<MobileOrders>> GetAsync(string userNameProdavaca, bool trackChanges = false);
         MobileOrders Update(MobileOrders mobileOrder);
     }
 }

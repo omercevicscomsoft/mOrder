@@ -49,6 +49,25 @@ namespace MOrder.Api.Controllers
             return Ok(mobileOrder);
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update([FromBody] InMobileOrderDTO mobileOrderDTO, int id)
+        {
+            var mobileOrder = await _repositoryManager.MobileOrderRepository.GetAsync(id);
+            if (mobileOrder == null)
+                return NotFound();
+            foreach (var item in mobileOrderDTO.OrderItems)
+            {
+                var orderItem = MobileOrderItemMapper.Map(item);
+                var orOrder = mobileOrder.MobileOrderItems.First(x => x.Id == orderItem.Id);
+                orOrder.Kolicina = orderItem.Kolicina;
+            }
+            mobileOrder.Update(mobileOrderDTO);
+            mobileOrder = _repositoryManager.MobileOrderRepository.Update(mobileOrder);
+            await _repositoryManager.SaveAsync();
+            await _hubContext.Clients.All.Update(MobileOrderMapper.Map(mobileOrder));
+            return Ok(mobileOrder);
+        }
+
         [HttpGet()]
         public async Task<IActionResult> GetAsync()
         {
@@ -63,6 +82,14 @@ namespace MOrder.Api.Controllers
             var mobileOrder = await _repositoryManager.MobileOrderRepository.GetAsync(id);
 
             return Ok(mobileOrder);
+        }
+
+        [HttpGet("prodavac/{username}")]
+        public async Task<IActionResult> GetAsync(string username)
+        {
+            var mobileOrders = await _repositoryManager.MobileOrderRepository.GetAsync(username);
+
+            return Ok(mobileOrders);
         }
 
         [HttpPut("{id}/status/{orderStatus}")]

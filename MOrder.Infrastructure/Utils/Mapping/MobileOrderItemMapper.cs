@@ -13,7 +13,7 @@ namespace MOrder.Infrastructure.Utils.Mapping
         {
             return new MobileOrderItems
             {
-                Id = 0,
+                Id = mobOrderItem.Id,
                 MobileOrderId = mobOrderItem.MobileOrderId,
                 SifraArtikla = mobOrderItem.SifraArtikla,
                 SifraGrupeArtikala = mobOrderItem.SifraGrupeArtikala,

@@ -7,6 +7,7 @@ namespace MOrder.Infrastructure.DTOs.Input
 {
     public class InMobileOrderDTO
     {
+        public int Id { get; set; }
         [Required]
         public int StolId { get; set; }
         [Required]
