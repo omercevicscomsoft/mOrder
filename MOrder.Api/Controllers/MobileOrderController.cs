@@ -58,12 +58,22 @@ namespace MOrder.Api.Controllers
             foreach (var item in mobileOrderDTO.OrderItems)
             {
                 var orderItem = MobileOrderItemMapper.Map(item);
-                var orOrder = mobileOrder.MobileOrderItems.First(x => x.Id == orderItem.Id);
-                orOrder.Kolicina = orderItem.Kolicina;
+              
+                if (mobileOrder.MobileOrderItems.Any(x => x.Id == orderItem.Id))
+                {
+                    var orOrder = mobileOrder.MobileOrderItems.First(x => x.Id == orderItem.Id);
+                    orOrder.Kolicina = orderItem.Kolicina;
+                } else
+                {
+                    mobileOrder.MobileOrderItems.Add(_repositoryManager.MobileOrderItemRepository.Create(orderItem));
+                    await _repositoryManager.SaveAsync();
+                }
+                
             }
             mobileOrder.Update(mobileOrderDTO);
             mobileOrder = _repositoryManager.MobileOrderRepository.Update(mobileOrder);
             await _repositoryManager.SaveAsync();
+            mobileOrder = await _repositoryManager.MobileOrderRepository.GetAsync(mobileOrder.Id);
             await _hubContext.Clients.All.Update(MobileOrderMapper.Map(mobileOrder));
             return Ok(mobileOrder);
         }
@@ -95,7 +105,7 @@ namespace MOrder.Api.Controllers
         [HttpPut("{id}/status/{orderStatus}")]
         public async Task<IActionResult> UpdateAsync([FromRoute] int id, [FromRoute] int orderStatus)
         {
-            var mobileOrder = await _repositoryManager.MobileOrderRepository.GetAsync(id);
+            var mobileOrder = await _repositoryManager.MobileOrderRepository.GetAsyncRoot(id);
 
             if (mobileOrder == null)
             {

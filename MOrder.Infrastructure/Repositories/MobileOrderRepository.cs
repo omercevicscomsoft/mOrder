@@ -35,7 +35,12 @@ namespace MOrder.Infrastructure.Repositories
 
         public async Task<MobileOrders> GetAsync(int id, bool trackChanges = false)
         {
-            return await base.Entity(trackChanges).Include(x => x.MobileOrderItems).ThenInclude(y => y.SifraArtiklaNavigation).FirstOrDefaultAsync(x => x.Id == id);
+            return await base.Entity(trackChanges).Include(x => x.MobileOrderItems).ThenInclude(y => y.SifraArtiklaNavigation).AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<MobileOrders> GetAsyncRoot(int id, bool trackChanges = false)
+        {
+            return await base.Entity(trackChanges).FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<IEnumerable<MobileOrders>> GetAsync(string userNameProdavaca, bool trackChanges = false)

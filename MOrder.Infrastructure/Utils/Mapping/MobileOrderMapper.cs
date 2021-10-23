@@ -36,7 +36,7 @@ namespace MOrder.Infrastructure.Utils.Mapping
                 Status = (Models.Status)order.Status,
                 StolId = order.StolId,
                 UserNameProdavaca = order.UserNameProdavaca,
-                MobileOrderItems = order.MobileOrderItems.Select(x=> MobileOrderItemMapper.Map(x))
+                MobileOrderItems = order.MobileOrderItems?.Select(x=> MobileOrderItemMapper.Map(x))
             };
         }
     }
