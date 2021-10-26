@@ -10,5 +10,6 @@ namespace MOrder.Infrastructure.Hubs
     public interface ISignalRHub
     {
         Task Update(OutMobileOrder mobileOrder);
+        Task IspisiFiskalniRacun(int id, string nacinPlacanja);
     }
 }

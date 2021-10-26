@@ -133,6 +133,13 @@ namespace MOrder.Api.Controllers
             return Ok(mobileOrder);
         }
 
+        [HttpPut("fakturisi/{id}/nacinPlacanja/{nacinPlacanja}")]
+        public async Task<IActionResult> FakturisiAsync([FromRoute] int id, [FromRoute] string nacinPlacanja)
+        {
+            await _hubContext.Clients.All.IspisiFiskalniRacun(id, nacinPlacanja);
+            return Ok();
+        }
+
         [HttpDelete("id/{id}")]
         public async Task<IActionResult> DeleteAsync([FromRoute] int id)
         {

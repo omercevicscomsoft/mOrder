@@ -12,5 +12,10 @@ namespace MOrder.Infrastructure.Hubs
         {
             await Clients.All.Update(mobileOrder);
         }
+
+        public async Task IspisiFiskalniRacun(int id, string nacinPlacanja)
+        {
+            await Clients.All.IspisiFiskalniRacun(id, nacinPlacanja);
+        }
     }
 }
