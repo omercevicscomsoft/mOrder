@@ -55,6 +55,19 @@ namespace MOrder.Api.Controllers
             var mobileOrder = await _repositoryManager.MobileOrderRepository.GetAsync(id);
             if (mobileOrder == null)
                 return NotFound();
+
+            if(mobileOrderDTO.OrderItems.Count()<mobileOrder.MobileOrderItems.Count())
+            {
+                foreach (var order in mobileOrder.MobileOrderItems)
+                {
+                    if(mobileOrderDTO.OrderItems.Find(x=>x.Id==order.Id) == null)
+                    {
+                        _repositoryManager.MobileOrderItemRepository.Delete(order);
+
+                    }
+                }
+            }
+
             foreach (var item in mobileOrderDTO.OrderItems)
             {
                 var orderItem = MobileOrderItemMapper.Map(item);
@@ -116,6 +129,24 @@ namespace MOrder.Api.Controllers
             mobileOrder = _repositoryManager.MobileOrderRepository.Update(mobileOrder);
 
             await _repositoryManager.SaveAsync();
+            await _hubContext.Clients.All.Update(MobileOrderMapper.Map(mobileOrder));
+            return Ok(mobileOrder);
+        }
+
+        [HttpDelete("id/{id}")]
+        public async Task<IActionResult> DeleteAsync([FromRoute] int id)
+        {
+            var mobileOrder = await _repositoryManager.MobileOrderRepository.GetAsync(id);
+
+            if (mobileOrder == null || mobileOrder.Status>0)
+            {
+                return NotFound();
+            }
+
+            _repositoryManager.MobileOrderRepository.Delete(mobileOrder);
+
+            await _repositoryManager.SaveAsync();
+            mobileOrder.MobileOrderItems = null;
             await _hubContext.Clients.All.Update(MobileOrderMapper.Map(mobileOrder));
             return Ok(mobileOrder);
         }

@@ -151,6 +151,11 @@ namespace MOrder.Core.Models2
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Data Source=SERVER-CS\\SQLSTANDARD;Initial Catalog=hotelasi_2021;Integrated Security=False;User ID=korisnik;Password=korisnik;MultipleActiveResultSets=True;Application Name=EntityFramework");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -2646,6 +2651,8 @@ namespace MOrder.Core.Models2
                 entity.Property(e => e.Cijena).HasColumnType("decimal(18, 2)");
 
                 entity.Property(e => e.Kolicina).HasColumnType("decimal(18, 2)");
+
+                entity.Property(e => e.KolicinaNaTalonu).HasColumnType("decimal(18, 2)");
 
                 entity.Property(e => e.ModifiedBy).HasMaxLength(50);
 

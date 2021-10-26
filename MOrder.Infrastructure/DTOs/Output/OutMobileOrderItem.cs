@@ -13,5 +13,6 @@ namespace MOrder.Infrastructure.DTOs.Output
         public string SifraArtikla { get; set; }
         public string SifraGrupeArtikala { get; set; }
         public OutArtikl SifraArtiklaNavigation { get; set; }
+        public decimal KolicinaNaTalonu { get; set; }
     }
 }

@@ -5,6 +5,6 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>C:\Users\pc\Documents\Projects\Development\MOrder.Api\MOrder.Api\bin\Release\netcoreapp3.1\publish\</_PublishTargetUrl>
-    <History>True|2021-10-23T09:23:24.2212519Z;True|2021-10-23T11:06:30.5552130+02:00;True|2021-10-22T15:53:49.9336316+02:00;True|2021-10-22T11:30:38.0290782+02:00;True|2021-10-21T09:55:46.7767005+02:00;True|2021-10-21T09:53:30.1839931+02:00;True|2021-10-21T09:30:01.0784195+02:00;</History>
+    <History>True|2021-10-26T10:27:30.6224016Z;True|2021-10-25T13:49:03.4058236+02:00;True|2021-10-25T13:24:54.0727493+02:00;True|2021-10-25T13:15:35.5043804+02:00;True|2021-10-23T11:23:24.2212519+02:00;True|2021-10-23T11:06:30.5552130+02:00;True|2021-10-22T15:53:49.9336316+02:00;True|2021-10-22T11:30:38.0290782+02:00;True|2021-10-21T09:55:46.7767005+02:00;True|2021-10-21T09:53:30.1839931+02:00;True|2021-10-21T09:30:01.0784195+02:00;</History>
   </PropertyGroup>
 </Project>

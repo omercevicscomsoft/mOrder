@@ -18,5 +18,6 @@ namespace MOrder.Infrastructure.DTOs.Input
         [Required]
         public decimal Kolicina { get; set; }
         public string SifraGrupeArtikala { get; set; }
+        public decimal KolicinaNaTalonu { get; set; }
     }
 }

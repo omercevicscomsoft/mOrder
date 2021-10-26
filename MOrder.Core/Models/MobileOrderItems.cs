@@ -18,6 +18,7 @@ namespace MOrder.Core.Models2
         public DateTime ModifiedDate { get; set; }
         public DateTime AddedDate { get; set; }
         public string ModifiedBy { get; set; }
+        public decimal KolicinaNaTalonu { get; set; }
 
         public virtual MobileOrders MobileOrder { get; set; }
         public virtual Artikli SifraArtiklaNavigation { get; set; }

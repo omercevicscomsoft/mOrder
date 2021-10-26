@@ -21,7 +21,8 @@ namespace MOrder.Infrastructure.Utils.Mapping
                 Kolicina = mobOrderItem.Kolicina,
                 AddedDate = DateTime.Now,
                 ModifiedBy = "",
-                ModifiedDate = DateTime.Now
+                ModifiedDate = DateTime.Now,
+                KolicinaNaTalonu = mobOrderItem.KolicinaNaTalonu
             };
         }
 
@@ -35,7 +36,8 @@ namespace MOrder.Infrastructure.Utils.Mapping
                 MobileOrderId = mobOrderItem.MobileOrderId,
                 SifraArtikla = mobOrderItem.SifraArtikla,
                 SifraGrupeArtikala = mobOrderItem.SifraGrupeArtikala,
-                SifraArtiklaNavigation = ArtiklMapper.Map(mobOrderItem.SifraArtiklaNavigation)
+                SifraArtiklaNavigation = ArtiklMapper.Map(mobOrderItem.SifraArtiklaNavigation),
+                KolicinaNaTalonu = mobOrderItem.KolicinaNaTalonu
             };
         }
     }

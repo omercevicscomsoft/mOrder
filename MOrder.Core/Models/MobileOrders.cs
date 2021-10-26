@@ -23,6 +23,7 @@ namespace MOrder.Core.Models2
         public DateTime ModifiedDate { get; set; }
         public DateTime AddedDate { get; set; }
         public string ModifiedBy { get; set; }
+        public bool Fakturisano { get; set; }
 
         public virtual Prodavaci UserNameProdavacaNavigation { get; set; }
         public virtual ICollection<MobileOrderItems> MobileOrderItems { get; set; }

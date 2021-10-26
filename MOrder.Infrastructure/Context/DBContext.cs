@@ -143,9 +143,6 @@ namespace MOrder.Infrastructure.Context
         public virtual DbSet<Usluge> Usluge { get; set; }
         public virtual DbSet<ZavisniTroskovi> ZavisniTroskovi { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -2640,6 +2637,8 @@ namespace MOrder.Infrastructure.Context
                 entity.Property(e => e.Cijena).HasColumnType("decimal(18, 2)");
 
                 entity.Property(e => e.Kolicina).HasColumnType("decimal(18, 2)");
+
+                entity.Property(e => e.KolicinaNaTalonu).HasColumnType("decimal(18, 2)");
 
                 entity.Property(e => e.ModifiedBy).HasMaxLength(50);
 
@@ -7713,7 +7712,9 @@ namespace MOrder.Infrastructure.Context
                     .HasForeignKey(d => d.KontoObaveze)
                     .HasConstraintName("FK_dbo.ZavisniTroskovi_dbo.AnalitickaKonta_KontoObaveze");
             });
+
         }
+
 
     }
 }

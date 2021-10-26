@@ -9,5 +9,6 @@ namespace MOrder.Infrastructure.Interfaces
     public interface IMobileOrderItemRepository
     {
         MobileOrderItems Create(MobileOrderItems mobileOrderItems);
+        void Delete(MobileOrderItems orderItem);
     }
 }

@@ -15,6 +15,7 @@ namespace MOrder.Infrastructure.DTOs.Input
         [Required]
         public List<InMobileOrderItemDTO> OrderItems { get; set; }
         public string DodatniOpis { get; set; }
+        public bool Fakturisano { get; set; }
 
     }
 }

@@ -19,5 +19,10 @@ namespace MOrder.Infrastructure.Repositories
             return base.Create(mobileOrderItem);
         }
 
+        public new void Delete(MobileOrderItems orderItem)
+        {
+            base.Delete(orderItem);
+        }
+
     }
 }
