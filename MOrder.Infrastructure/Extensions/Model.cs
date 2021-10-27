@@ -8,9 +8,10 @@ namespace MOrder.Infrastructure.Extensions
 {
     public static class Model
     {
-        public static void Update(this MobileOrders mobileOrder, int status)
+        public static void Update(this MobileOrders mobileOrder, int status, bool fakturisano)
         {
             mobileOrder.Status = status;
+            mobileOrder.Fakturisano = fakturisano;
         }
 
         public static void Update(this MobileOrders mobileOrder, InMobileOrderDTO mobileOrderDTO)

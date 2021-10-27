@@ -30,7 +30,7 @@ namespace MOrder.Infrastructure.Repositories
 
         public async Task<IEnumerable<MobileOrders>> GetAsync(bool trackChanges = false)
         {
-            return await base.Entity(trackChanges).Include(x=>x.MobileOrderItems).ThenInclude(y=>y.SifraArtiklaNavigation).Where(x=>x.DatumIvrijeme>DateTime.Now.AddHours(-12) && !x.Fakturisano).ToListAsync();
+            return await base.Entity(trackChanges).Include(x=>x.MobileOrderItems).ThenInclude(y=>y.SifraArtiklaNavigation).Where(x=>x.DatumIvrijeme>DateTime.Now.AddHours(-12) && x.Status!=3).ToListAsync();
         }
 
         public async Task<MobileOrders> GetAsync(int id, bool trackChanges = false)

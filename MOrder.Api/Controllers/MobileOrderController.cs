@@ -115,8 +115,8 @@ namespace MOrder.Api.Controllers
             return Ok(mobileOrders);
         }
 
-        [HttpPut("{id}/status/{orderStatus}")]
-        public async Task<IActionResult> UpdateAsync([FromRoute] int id, [FromRoute] int orderStatus)
+        [HttpPut("{id}/status/{orderStatus}/fakturisano/{fakturisano}")]
+        public async Task<IActionResult> UpdateAsync([FromRoute] int id, [FromRoute] int orderStatus, [FromRoute] bool fakturisano)
         {
             var mobileOrder = await _repositoryManager.MobileOrderRepository.GetAsyncRoot(id);
 
@@ -124,7 +124,7 @@ namespace MOrder.Api.Controllers
             {
                 return Ok(mobileOrder);
             }
-            mobileOrder.Update(orderStatus);
+            mobileOrder.Update(orderStatus, fakturisano);
 
             mobileOrder = _repositoryManager.MobileOrderRepository.Update(mobileOrder);
 
