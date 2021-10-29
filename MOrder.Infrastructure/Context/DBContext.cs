@@ -7712,9 +7712,7 @@ namespace MOrder.Infrastructure.Context
                     .HasForeignKey(d => d.KontoObaveze)
                     .HasConstraintName("FK_dbo.ZavisniTroskovi_dbo.AnalitickaKonta_KontoObaveze");
             });
-
         }
-
 
     }
 }

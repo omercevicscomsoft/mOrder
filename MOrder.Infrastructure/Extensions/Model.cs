@@ -14,6 +14,11 @@ namespace MOrder.Infrastructure.Extensions
             mobileOrder.Fakturisano = fakturisano;
         }
 
+        public static void Update(this MobileOrders mobileOrder, bool piceIsporuceno)
+        {
+            mobileOrder.PiceIsporuceno = piceIsporuceno;
+        }
+
         public static void Update(this MobileOrders mobileOrder, InMobileOrderDTO mobileOrderDTO)
         {
             mobileOrder.StolId = mobileOrderDTO.StolId;

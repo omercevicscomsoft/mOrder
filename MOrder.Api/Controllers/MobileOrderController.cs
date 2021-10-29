@@ -133,6 +133,24 @@ namespace MOrder.Api.Controllers
             return Ok(mobileOrder);
         }
 
+        [HttpPut("{id}/piceIsporuceno/{piceIsporuceno}")]
+        public async Task<IActionResult> UpdatePiceIsporucenoAsync([FromRoute] int id, [FromRoute] bool piceIsporuceno)
+        {
+            var mobileOrder = await _repositoryManager.MobileOrderRepository.GetAsyncRoot(id);
+
+            if (mobileOrder == null)
+            {
+                return Ok(mobileOrder);
+            }
+            mobileOrder.Update(piceIsporuceno);
+
+            mobileOrder = _repositoryManager.MobileOrderRepository.Update(mobileOrder);
+
+            await _repositoryManager.SaveAsync();
+            await _hubContext.Clients.All.Update(MobileOrderMapper.Map(mobileOrder));
+            return Ok(mobileOrder);
+        }
+
         [HttpPut("fakturisi/{id}/nacinPlacanja/{nacinPlacanja}")]
         public async Task<IActionResult> FakturisiAsync([FromRoute] int id, [FromRoute] string nacinPlacanja)
         {

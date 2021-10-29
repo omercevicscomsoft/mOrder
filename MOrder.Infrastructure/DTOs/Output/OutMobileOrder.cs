@@ -15,5 +15,6 @@ namespace MOrder.Infrastructure.DTOs.Output
         public Status Status { get; set; }
         public IEnumerable<OutMobileOrderItem> MobileOrderItems { get; set; }
         public bool Fakturisano { get; set; }
+        public bool PiceIsporuceno { get; set; }
     }
 }

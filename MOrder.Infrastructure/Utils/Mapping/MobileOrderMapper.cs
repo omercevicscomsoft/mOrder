@@ -23,7 +23,8 @@ namespace MOrder.Infrastructure.Utils.Mapping
                 DatumIvrijeme = DateTime.Now,
                 ModifiedBy = "",
                 ModifiedDate = DateTime.Now,
-                Fakturisano = mobOrder.Fakturisano
+                Fakturisano = mobOrder.Fakturisano,
+                PiceIsporuceno = mobOrder.PiceIsporuceno
             };
         }
 
@@ -38,7 +39,8 @@ namespace MOrder.Infrastructure.Utils.Mapping
                 StolId = order.StolId,
                 UserNameProdavaca = order.UserNameProdavaca,
                 MobileOrderItems = order.MobileOrderItems?.Select(x=> MobileOrderItemMapper.Map(x)),
-                Fakturisano = order.Fakturisano
+                Fakturisano = order.Fakturisano,
+                PiceIsporuceno = order.PiceIsporuceno
             };
         }
     }
